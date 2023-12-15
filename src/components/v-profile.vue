@@ -69,6 +69,7 @@ export default {
 
     async getUserInfo() {
       if (this.user != null) {
+
         //get logined user
         const querySnap = await getDocs(
           query(
@@ -103,7 +104,6 @@ export default {
     },
 
     consistProfileCatalog() {
-      this.$store.dispatch('loadProducts');
       this.products.forEach((element) => {
         if (this.saved_drinks.includes(element.id)) {
           element.filter = true;
@@ -121,6 +121,9 @@ export default {
   },
   updated() {
     this.sendChangesToDb();
+  },
+  mounted() {
+    this.$store.dispatch('loadProducts');
   },
 };
 </script>

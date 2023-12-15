@@ -1,17 +1,15 @@
 <template>
   <div class="v-catalog">
     <h1>Каталог</h1>
-    <router-link 
-      class="icon-cart"
-      to="/cart"   
-    >Товаров в корзине: {{ cart.length }}
+    <router-link class="icon-cart" to="/cart"
+      >Товаров в корзине: {{ cart.length }}
     </router-link>
-    <v-catalog-item 
-        v-for="product in products"
-        :key="product.id"
-        :product_data="product"
-        @addToCart="addToCart"
-        @addToProfile="addToProfile"
+    <v-catalog-item
+      v-for="product in products"
+      :key="product.id"
+      :product_data="product"
+      @addToCart="addToCart"
+      @addToProfile="addToProfile"
     />
   </div>
 </template>
@@ -19,6 +17,7 @@
 <script>
 import vCatalogItem from "./v-catalog-item.vue";
 import { mapState } from "vuex";
+import router from "../router/router";
 
 export default {
   name: "v-catalog",
@@ -30,13 +29,17 @@ export default {
         this.$store.dispatch('addToCart', data)
     },
     addToProfile(data) {
-      this.$store.dispatch('addToProfile', data)
+      if (this.user == null) {
+        router.push("/login");
+      } else {
+        this.$store.dispatch('addToProfile', data)
+      }
     },
   },
   mounted() {
     this.$store.dispatch('loadProducts');
   },
-  computed: mapState(['products', 'cart']),
+  computed: mapState(['products', 'cart', 'user']),
   data() {
     return {};
   },

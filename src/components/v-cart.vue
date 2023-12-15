@@ -14,7 +14,8 @@
       @deleteFromCart="deleteFromCart(index)"
     />
     <div class="v-cart-total">
-      <p>Total: {{ calculate_cost }}</p>
+      <p>Сумма: {{ calculate_cost }}</p>
+      <button class="btn-total">Заказать</button>
     </div>
   </div>
 </template>
@@ -48,15 +49,25 @@ export default {
 </script>
 
 <style>
+.v-cart {
+  margin-bottom: 100px;
+}
+
 .v-cart-total {
   color: #ffffff;
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 20%;
+  width: 100%;
   padding: 1px;
   display: flex;
   justify-content: center;
   background-color: rgb(48, 48, 48);
+  margin: 20px;
+}
+.btn-total {
+  margin: 7px;
+  padding: 5px;
+  height: 40px;
 }
 </style>

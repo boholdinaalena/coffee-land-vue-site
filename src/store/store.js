@@ -10,11 +10,6 @@ import {
   signInWithPopup,
   OAuthProvider,
 } from "firebase/auth";
-import {
-    doc,
-    setDoc
-  } from "firebase/firestore";
-
 
 const store = createStore({
   state: {
@@ -40,7 +35,7 @@ const store = createStore({
           state.cart.push(product);
         }
       } else {
-        state.cart.push(product);
+        state.cart.push(product)
       }
     },
     REMOVE_FROM_CART: (state, index) => {
@@ -70,6 +65,7 @@ const store = createStore({
     },
     addToCart({ commit }, product) {
       product.count = 1;
+      product.add = "add";
       commit("SET_CART", product);
     },
     deleteFromCart({ commit }, index) {
@@ -91,7 +87,7 @@ const store = createStore({
         return;
       }
       commit("SET_USER", auth.currentUser);
-      router.push("/profile");
+      router.push("/");
     },
     async register({ commit }, details) {
       const { email, password } = details;
@@ -116,11 +112,11 @@ const store = createStore({
         return;
       }
       commit("SET_USER", auth.currentUser);
-      router.push("/profile");
+      router.push("/");
     },
-    async logout({ commit }, details) {
-      await signOut(auth());
-      commit("CLEAR_USER");
+    async logout({ commit }) {
+      await signOut(auth);
+      commit("SET_USER", null);
       router.push("/");
     },
     async signInWithGoogle({ commit }) {
@@ -128,7 +124,7 @@ const store = createStore({
       await signInWithPopup(auth, provider)
         .then(() => {
           commit("SET_USER", auth.currentUser);
-          router.push("/profile");
+          router.push("/");
         })
         .catch((error) => {
           //handle error
@@ -139,25 +135,25 @@ const store = createStore({
       await signInWithPopup(auth, provider)
         .then(() => {
           commit("SET_USER", auth.currentUser);
-          router.push("/profile");
+          router.push("/");
         })
         .catch((error) => {
           //handle error
         });
     },
 
-    fetchUser({ commit }) {
-      auth.onAuthStateChanged(async (user) => {
-        if (user === null) {
-          commit("CLEAR_USER");
-        } else {
-          commit("SET_USER", user);
-          if (router.isReady() && router.currentRoute.value.path === "/login") {
-            router.push("/");
-          }
-        }
-      });
-    },
+    // fetchUser({ commit }) {
+    //   auth.onAuthStateChanged(async (user) => {
+    //     if (user === null) {
+    //       commit("CLEAR_USER");
+    //     } else {
+    //       commit("SET_USER", user);
+    //       if (router.isReady() && router.currentRoute.value.path === "/login") {
+    //         router.push("/");
+    //       }
+    //     }
+    //   });
+    // },
     addToProfile({ commit }, id) {
       commit("SET_SAVE_DRINKS", id);
     },
