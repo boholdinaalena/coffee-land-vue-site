@@ -35,7 +35,7 @@ const store = createStore({
           state.cart.push(product);
         }
       } else {
-        state.cart.push(product)
+        state.cart.push(product);
       }
     },
     REMOVE_FROM_CART: (state, index) => {
@@ -52,6 +52,12 @@ const store = createStore({
       } else {
         state.saved_drinks.push(id);
       }
+    },
+    REMOVE_FROM_PROFILE: (state, id) => {
+      let index = state.saved_drinks.indexOf(id);
+      console.log("mutation index:" ,index);
+      state.saved_drinks.splice(index, 1);
+      console.log("slice");
     },
   },
   actions: {
@@ -156,6 +162,10 @@ const store = createStore({
     // },
     addToProfile({ commit }, id) {
       commit("SET_SAVE_DRINKS", id);
+    },
+    deleteFromProfile({ commit }, id) {
+      console.log("action:", id)
+      commit("REMOVE_FROM_PROFILE", id);
     },
   },
 });

@@ -25,7 +25,10 @@
       >
         +
       </button>
-      <button v-if="saved_drinks.includes(product_data.id)">-</button>
+      <button 
+        v-if="saved_drinks.includes(product_data.id)"
+        @click.stop="deleteFromProfile"
+      >-</button>
     </center>
   </div>
 </template>
@@ -71,6 +74,9 @@ export default {
         this.isAddProfile = "+";
       }
     },
+    deleteFromProfile() {
+      this.$emit("deleteFromProfile", this.product_data.id);
+    }
   },
 };
 </script>

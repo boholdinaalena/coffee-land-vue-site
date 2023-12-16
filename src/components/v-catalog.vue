@@ -10,6 +10,7 @@
       :product_data="product"
       @addToCart="addToCart"
       @addToProfile="addToProfile"
+      @deleteFromProfile="deleteFromProfile(product.id)"
     />
   </div>
 </template>
@@ -34,6 +35,11 @@ export default {
       } else {
         this.$store.dispatch('addToProfile', data)
       }
+    },
+    deleteFromProfile(id) {
+      this.$store.dispatch("deleteFromProfile", id);
+    },    deleteFromProfile(id) {
+      this.$store.dispatch("deleteFromProfile", id);
     },
   },
   mounted() {

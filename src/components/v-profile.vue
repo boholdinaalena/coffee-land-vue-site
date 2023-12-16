@@ -1,6 +1,7 @@
 <template>
   <div class="v-profile">
     <h1>User</h1>
+    <p>{{ saved_drinks }}</p>
     <p>Name: {{ user_info.name }}</p>
     <p>Email: {{ user_info.email }}</p>
     <h2>Ваши любимые товары:</h2>
@@ -10,6 +11,7 @@
       :product_data="product"
       @addToCart="addToCart"
       @addToProfile="addToProfile"
+      @deleteFromProfile="deleteFromProfile(product.id)"
     />
   </div>
 </template>
@@ -41,12 +43,14 @@ export default {
   computed: mapState(["user", "saved_drinks", "products"]),
   methods: {
     addToCart(data) {
-        this.$store.dispatch('addToCart', data)
+      this.$store.dispatch("addToCart", data);
     },
     addToProfile(data) {
-      this.$store.dispatch('addToProfile', data)
+      this.$store.dispatch("addToProfile", data);
     },
-
+    deleteFromProfile(id) {
+      this.$store.dispatch("deleteFromProfile", id);
+    },
     async createUser() {
       if (this.user != null) {
         //get logined user information
@@ -63,13 +67,11 @@ export default {
             saved_drinks_id: [],
           });
         }
-
       }
     },
 
     async getUserInfo() {
       if (this.user != null) {
-
         //get logined user
         const querySnap = await getDocs(
           query(
@@ -123,7 +125,7 @@ export default {
     this.sendChangesToDb();
   },
   mounted() {
-    this.$store.dispatch('loadProducts');
+    this.$store.dispatch("loadProducts");
   },
 };
 </script>
