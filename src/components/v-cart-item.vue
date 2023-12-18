@@ -12,11 +12,13 @@
     </div>
     <div class="cart-item-count">
       <p class="count">
-        <button @click="minusProduct">-</button>
-          Количество: {{ cart_data.count}}
-        <button @click="plusProduct">+</button>
+        <div class="count-container">
+          <button @click="minusProduct">-</button>
+            {{ cart_data.count}}
+          <button @click="plusProduct">+</button>
+          <img @click="deleteFromCart" src="../assets/images/garbage.png" alt="delete">
+        </div>
       </p>
-      <button class="delete" @click="deleteFromCart">Delete</button>
     </div>
   </div>
 </template>
@@ -52,39 +54,55 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .v-cart-item {
-  border: 2px solid #313131;
-  padding: 8px;
+  background: #ffff;
+  padding: 2vw;
   border-radius: 25px;
   display: block;
-  height: 270px;
-  margin: 5px;
-  float: left;
+  height: 13vw;
+  margin: 2vw;
+  width: 50%;
+  border: 1px solid;
 }
 .cart-item-img {
-  width: 18%;
-  float: left;
+  width: 25%;
   border-radius: 20px;
-}
-.cart-info-container {
-  width: 100%;
-  background-color: rgb(229, 229, 229);
-}
-.cart-item-description {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.cart-item-count {
-  float: right;
-  width: 400px;
-  height: fit-content;
+  margin-right: 1vw;
+  float: left;
 }
 
-.count {
-  display: block;
-  float: left;
-  margin-top: 3px;
+.cart-info-container {
+  margin-left: 3vw;
+  font-size: 1vw;
+}
+.cart-item-count {
+  background: #780000;
+  float: right;
+  font-size: 1.5vw;
+  margin-top: -6vw;
+  height: 0;
+  width: 20%;
+
+  .count-container {
+    width: max-content;
+    z-index: 11;
+
+    img {
+      width: 2vw;
+      margin-left: 2vw;
+      padding-top: 2vw;
+      margin-bottom: -0.65vw;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    padding: 0.6vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border: 5vw;
+    font-size: 1vw;
+  }
 }
 </style>

@@ -8,21 +8,17 @@
     <div class="full-information">
       <h1>{{ product_data.name }}</h1>
       <p class="description">{{ product_data.description }}</p>
-      <h3>{{ product_data.size }}</h3>
-      <p>Раздел: {{ product_data.section }}</p>
-      <h1>{{ product_data.price }} рублей</h1>
+      <p>Размер: <b>{{ product_data.size }}</b> </p>
+      <p>Раздел: <b>{{ product_data.section }}</b> </p>
+      <p>Цена: <b>{{ product_data.price }} рублей</b>  </p>
     </div>
-    <!-- <button @click="addToCart">Добавить в корзину</button> -->
-    <!-- <button
-      v-if="!saved_drinks.includes(product_data.id)"
-      @click="addToProfile"
-    >
-      +
-    </button> -->
-    <!-- <button v-if="saved_drinks.includes(product_data.id)">-</button> -->
+    <button class="btn-popup" @click="addToCart(product_data)">Добавить в корзину</button>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
+import router from '../router/router';
+
 export default {
   name: "v-popup-item",
   props: {
@@ -33,14 +29,21 @@ export default {
       },
     },
   },
+  computed: mapState(["saved_drinks"]),
   methods: {
     closePopup() {
       this.$emit("closePopup");
-    }
+    },
+    addToCart(data) {
+        this.$store.dispatch('addToCart', data);
+        router.push("/cart");
+    },
   }
 };
 </script>
-<style>
+<style lang="scss">
+@import '../assets/style.scss';
+
 .v-popup-item {
   position: fixed;
   width: 100%;
@@ -48,6 +51,7 @@ export default {
   top: 0%;
   left: 0%;
   background-color: #dcdcdc;
+  z-index: 10;
 }
 
 .btn-close {
@@ -56,11 +60,17 @@ export default {
   position: fixed;
 }
 
-.popup-img {
-  width: 30%;
-  top: 15%;
-  left: 2%;
+.btn-popup {
   position: fixed;
+  top: 75%;
+}
+
+.popup-img {
+  width: 30vw;
+  top: 15%;
+  left: 4%;
+  position: fixed;
+  border-radius: $border;
 }
 
 .full-information {
@@ -69,6 +79,10 @@ export default {
   left: 37%;
   text-align: left;
   margin-right: 5%;
+
+  p {
+    font-size: 1.3vw;
+  }
 }
 
 .description {

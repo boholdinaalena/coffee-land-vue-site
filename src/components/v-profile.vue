@@ -1,11 +1,13 @@
 <template>
   <div class="v-profile">
-    <h1>User</h1>
-    <p>{{ saved_drinks }}</p>
-    <p>Name: {{ user_info.name }}</p>
-    <p>Email: {{ user_info.email }}</p>
-    <h2>Ваши любимые товары:</h2>
+    <div class="user-info">
+      <p>Name: {{ user_info.name }}</p>
+      <p>Email: {{ user_info.email }}</p>
+
+      <h2>Ваши любимые товары:</h2>
+    </div>
     <v-catalog-item
+      class="favorite-products"
       v-for="product in profile_products"
       :key="product.id"
       :product_data="product"
@@ -87,6 +89,7 @@ export default {
 
         //get information about user's saved products in app
         let arr = this.user_info.saved_drinks_id;
+        console.log(arr)
         for (let i = 0; i < arr.length; i++) {
           this.$store.dispatch("addToProfile", arr[i]);
         }
@@ -129,4 +132,9 @@ export default {
   },
 };
 </script>
-<style></style>
+<style lang="scss">
+  .user-info {
+    margin-top: 7vw;
+    margin-left: 7vw;
+  }
+</style>

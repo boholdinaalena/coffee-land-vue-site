@@ -1,8 +1,10 @@
 <template>
   <div class="v-catalog">
-    <h1>Каталог</h1>
+    <h1 class="caption">Выберите товары из каталога</h1>
     <router-link class="icon-cart" to="/cart"
-      >Товаров в корзине: {{ cart.length }}
+      >
+      <img src="../assets/images/cart-icon1.webp"/>
+      <p class="cart-length">{{ cart.length }}</p>
     </router-link>
     <v-catalog-item
       v-for="product in products"
@@ -52,13 +54,32 @@ export default {
 };
 </script>
 
-<style scoped>
-.icon-cart {
-  position: fixed;
-  bottom: 40px;
-  right: 10px;
-  border-radius: 25px;
-  border: solid 2px #2c2c2c;
-  padding: 10px;
-}
+<style lang="scss">
+  .v-catalog {
+    .caption {
+      margin-top: 6vw;
+      text-align: center;
+    }
+
+    .icon-cart {
+      .cart-length {
+        position: fixed;
+        background: #ffff;
+        width: fit-content;
+        border-radius: 2vw;
+        top: 83%;
+        right: 1%;
+        padding: 0.2vw;
+        padding-left: 0.4vw;
+        padding-right: 0.4vw;
+        font-weight: 800;
+      }
+      img {
+        width: 6vw;
+        position: fixed;
+        top: 87%;
+        right: 1%;
+      }
+    }
+ }
 </style>

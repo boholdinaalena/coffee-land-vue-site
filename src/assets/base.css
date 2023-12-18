@@ -1,0 +1,108 @@
+@font-face {
+    font-family: Vetrino;
+    src: url('./fonts/ofont.ru_Vetrino.ttf');
+}
+
+:root {
+  --gradient2: linear-gradient(to right bottom, #ff3e71, #e5d4c9);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Vetrino;
+  font-size: 16pt;
+  margin: 0;
+  padding: 0;
+  background-size: 100%;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background: #eaeaea;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.block {
+  --size: 100vw;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  width: var(--size);
+  height: calc(var(--size) / 1.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  overflow: hidden;
+  margin-bottom: 64px;
+  box-shadow: 16px 32px 64px rgba(0,0,0, 0.3);
+}
+.block__blur-bg-wrap {
+  position: absolute;
+  z-index: -1;
+  animation: move 25s ease-in-out infinite;
+}
+.block__blur-bg {
+  width: calc(var(--size) / 1.2);
+  height: calc(var(--size) / 1.2);
+  animation: bgCircle 15s ease-in-out infinite;
+  background: var(--gradient);
+  filter: blur(25px);
+}
+.block__blur-bg_color-2 {
+  background: var(--gradient2);
+}
+.block:hover .block__blur-bg-wrap,
+.block:hover .block__blur-bg {
+  animation-play-state: running;
+}
+
+@keyframes move {
+  0% {
+    top: -50%;
+    left: -50%;
+    transform: rotate(0deg);
+  }
+  25% {
+    top: 50%;
+    left: 0%;
+  }
+  50% {
+    top: 0%;
+    left: 50%;
+  }
+  75% {
+    top: -30%;
+    left: 0%;
+  }
+  100% {
+    top: -50%;
+    left: -50%;
+    transform: rotate(360deg);
+  }
+}
+@keyframes bgCircle {
+  0% {
+    border-radius: 200px;
+  }
+  25% {
+    border-radius: 100px 200px 100px 200px;
+  }
+  50% {
+    border-radius: 200px 100px 200px 100px;
+  }
+  75% {
+    border-radius: 100px 200px 100px 200px;
+  }
+  100% {
+    border-radius: 200px;
+  }
+}

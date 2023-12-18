@@ -1,0 +1,27 @@
+$bgColor: #e5d4c9;
+$color: #ff3e71;
+$border: 0.8vw;
+
+button {
+  padding: 0.7vw;
+  padding-left: 1.6vw;
+  padding-right: 1.6vw;
+  border-radius: $border;
+  border: none;
+  font-family: Vetrino, sans-serif;
+//   font-weight: 700;
+//   letter-spacing: 0.2vw;
+  background-color: #ffff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ffff;
+  color: $color;
+  box-shadow: $color 0px 1px 1px, $color 0px 0px 0px 1px;
+}
+
+.caption {
+  font-size: 3vw;
+  font-weight: 400;
+}

@@ -1,10 +1,13 @@
 <template>
   <div class="v-cart">
-    <h1>Cart</h1>
-    <div v-if="!cart.length">
+    <div class="cart-empty" v-if="!cart.length">
+      <img id="cart1" src="../assets/images/glass1.webp"/>
+      <img id="cart2" src="../assets/images/glass2.webp"/>
+      <img id="cart3" src="../assets/images/glass3.webp"/>
+      <img id="cart4" src="../assets/images/croissant.webp"/>
       <p>В корзине пока нет товаров</p>
       <p>Вы можете добавить товары в каталоге -></p>
-      <router-link to="/catalog"><button>Каталог</button></router-link>
+      <router-link to="/catalog"><button class="btn-empty">Каталог</button></router-link>
     </div>
     <v-cart-item
       v-if="cart.length"
@@ -15,7 +18,7 @@
     />
     <div class="v-cart-total">
       <p>Сумма: {{ calculate_cost }}</p>
-      <button class="btn-total">Заказать</button>
+      <button class="btn-total" v-if="calculate_cost > 0">Заказать</button>
     </div>
   </div>
 </template>
@@ -36,7 +39,6 @@ export default {
       for (let item of Object.values(this.cart)) {
         sum += item.count * item.price;
       }
-      this.$store.dispatch('calc_total', sum);
       return sum;
     },
   },
@@ -48,9 +50,65 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .v-cart {
+  margin-top: 6vw;
   margin-bottom: 100px;
+}
+
+.cart-empty {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  text-align: center;
+
+  img {
+    width: 13vw;
+    position: absolute;
+    animation: empty-animation 15s infinite;
+  }
+
+  @keyframes empty-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: scale(1.2);
+      transform: rotate(40deg);
+    }
+    75% {
+      transform: rotate(-40deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .btn-empty {
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+}
+
+#cart1 {
+  top: -100%;
+  left: -55%;
+}
+#cart2 {
+  width: 18vw;
+  rotate: -100deg;
+  top: 100%;
+  left: 85%;
+}
+#cart3 {
+  top: 100%;
+  left: -25%;
+}
+#cart4 {
+  top: -75%;
+  left: 100%;
 }
 
 .v-cart-total {
