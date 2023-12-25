@@ -6,7 +6,7 @@
     <div class="title">
       <p class="title coffee">Coffee</p>
       <p class="title land">Land</p>
-      <img src="/src/assets/images/snapedit.png" alt="coffee"  align="middle"/>
+      <img src="/src/assets/images/glass1.webp" alt="coffee"  align="middle"/>
     </div>
     <p class="title-description">Место - где рождается кофе</p>
   </div>
@@ -22,7 +22,7 @@ export default {
   line-height: 0;
 
   .coffee {
-    margin-left: 12vw;
+    margin-left: 15vw;
     margin-top: 22vw;
   }
 
@@ -34,8 +34,8 @@ export default {
     position: absolute;
     top: 4vw;
     width: 25vw;
-    left: 40%;
-    rotate: 20deg;
+    left: 38%;
+    rotate: 5deg;
   }
   img:hover {
     animation: el-rotate 2s infinite;
