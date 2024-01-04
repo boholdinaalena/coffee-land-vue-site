@@ -16,7 +16,7 @@
       src="../assets/images/like.png"
       class="like"
     />
-    <img class="item-img" :src="`src/assets/coffee_carts/${product_data.image}.jpg`" />
+    <img class="item-img" :src="`src/assets/coffee_carts/${product_data.image}.webp`" />
     <h3 class="item-name">{{ product_data.name }}</h3>
     <div v-if="isClose">
       <v-popup-item

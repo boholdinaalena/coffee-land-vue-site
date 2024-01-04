@@ -20,7 +20,7 @@ body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  background: #eaeaea;
+  background: #656565;
 }
 
 a {
@@ -28,7 +28,7 @@ a {
     text-decoration: none;
 }
 
-.block {
+/* .block {
   --size: 100vw;
   top: 0;
   left: 0;
@@ -105,4 +105,4 @@ a {
   100% {
     border-radius: 200px;
   }
-}
+} */

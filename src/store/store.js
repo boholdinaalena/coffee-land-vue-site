@@ -16,7 +16,9 @@ const store = createStore({
     products: [],
     cart: [],
     user: null,
+    user_info: {},
     saved_drinks: [],
+    profile_products: {}
   },
   mutations: {
     SET_PRODUCTS: (state, products) => {
@@ -47,6 +49,9 @@ const store = createStore({
     CLEAR_USER(state) {
       state.user = null;
     },
+    SET_USER_INFO(state, data) {
+      state.user_info = data;
+    },
     SET_SAVE_DRINKS(state, id) {
       if (state.saved_drinks.includes(id)) {
       } else {
@@ -55,9 +60,12 @@ const store = createStore({
     },
     REMOVE_FROM_PROFILE: (state, id) => {
       let index = state.saved_drinks.indexOf(id);
-      console.log("mutation index:" ,index);
+      console.log("mutation index:", index);
       state.saved_drinks.splice(index, 1);
       console.log("slice");
+    },
+    CLEAR_SAVED(state, id) {
+      state.saved_drinks.length = 0;
     },
   },
   actions: {
@@ -118,11 +126,12 @@ const store = createStore({
         return;
       }
       commit("SET_USER", auth.currentUser);
-      router.push("/");
     },
+
     async logout({ commit }) {
       await signOut(auth);
       commit("SET_USER", null);
+      commit("CLEAR_SAVED");
       router.push("/");
     },
     async signInWithGoogle({ commit }) {
@@ -147,7 +156,9 @@ const store = createStore({
           //handle error
         });
     },
-
+    async loadUserInfo({ commit }, data) {
+      commit("SET_USER_INFO", data);
+    },
     // fetchUser({ commit }) {
     //   auth.onAuthStateChanged(async (user) => {
     //     if (user === null) {
@@ -164,7 +175,7 @@ const store = createStore({
       commit("SET_SAVE_DRINKS", id);
     },
     deleteFromProfile({ commit }, id) {
-      console.log("action:", id)
+      console.log("action:", id);
       commit("REMOVE_FROM_PROFILE", id);
     },
   },

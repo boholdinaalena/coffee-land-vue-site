@@ -25,3 +25,76 @@ button:hover {
   font-size: 3vw;
   font-weight: 400;
 }
+
+.cart-empty {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  text-align: center;
+
+  img {
+    width: 13vw;
+    position: absolute;
+    animation: empty-animation 15s infinite;
+  }
+
+  @keyframes empty-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: scale(1.2);
+      transform: rotate(40deg);
+    }
+    75% {
+      transform: rotate(-40deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .btn-empty {
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+}
+
+#cart1 {
+  top: -100%;
+  left: -55%;
+}
+#cart2 {
+  width: 18vw;
+  rotate: -100deg;
+  top: 100%;
+  left: 85%;
+}
+#cart3 {
+  top: 100%;
+  left: -25%;
+}
+#cart4 {
+  top: -75%;
+  left: 100%;
+}
+
+.v-cart-total {
+  color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  padding: 1px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(48, 48, 48);
+  margin: 20px;
+}
+.btn-total {
+  margin: 7px;
+  padding: 5px;
+  height: 40px;
+}
