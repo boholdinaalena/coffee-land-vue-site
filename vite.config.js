@@ -12,6 +12,6 @@ export default defineConfig({
     }
   },
   build: {chunkSizeWarningLimit: 1600},
-  publicPath: `/coffee-land-vue-site/`,
+  publicPath: "https://boholdinaalena.github.io/coffee-land-vue-site/",
   transpileDependencies: true
 })
