@@ -4,17 +4,14 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/",
+  base: "/catalog",
   plugins: [vue()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build: {chunkSizeWarningLimit: 1600}
-})
-
-module.exports = {
+  build: {chunkSizeWarningLimit: 1600},
   publicPath: `/coffee-land-vue-site/`,
-  transpileDependencies: true,
-}
+  transpileDependencies: true
+})
