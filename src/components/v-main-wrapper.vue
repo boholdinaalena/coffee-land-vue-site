@@ -48,8 +48,8 @@ export default {
   computed: mapState(["user", "saved_drinks"]),
   methods: {
     signOut() {
-      this.$store.dispatch("logout");
       this.sendChangesToDb();
+      this.$store.dispatch("logout");
     },
     async sendChangesToDb() {
         console.log(
@@ -130,7 +130,7 @@ export default {
       if (this.user) {
         this.sendChangesToDb();
       }
-    }, 3000);
+    }, 7000);
   },
 }
 </script>
